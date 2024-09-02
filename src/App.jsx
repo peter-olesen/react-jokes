@@ -3,6 +3,15 @@ import './App.scss'
 
 function App() {
 
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.setAttribute("theme", "darkMode");
+      setDark(true)
+    }
+  }, []);
+
   const [data, setData] = useState(null);
   // endpoint = url to fetch from
   const endpoint = "https://geek-jokes.sameerkumar.website/api?format=json";
