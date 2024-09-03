@@ -12,6 +12,14 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.setAttribute("theme", "darkMode")
+    } else {
+      document.documentElement.setAttribute("theme", "lightMode")
+    }
+  }, [dark])
+
   const [data, setData] = useState(null);
   // endpoint = url to fetch from
   const endpoint = "https://geek-jokes.sameerkumar.website/api?format=json";
@@ -33,7 +41,8 @@ function App() {
         <>
           <img src="./src/assets/chucknorris.jpg" />
           <p>{data.joke}</p>
-          <button onClick={fetchData}>Roundhouse Kick!</button>
+          <button onClick={fetchData}>Roundhouse Kick!</button><br /><br />
+          <button onClick={() => setDark(!dark)}>Change theme!</button>
         </>
       ) : (
         <p>Loading...</p>
